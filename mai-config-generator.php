@@ -197,25 +197,28 @@ final class Mai_Config_Generator {
 	 * Config generator.
 	*/
 	function get_config() {
+		if ( ! function_exists( 'mai_get_config' ) ) {
+			return;
+		}
 
 		wp_enqueue_script( 'mai-config-generator', MAI_CONFIG_GENERATOR_PLUGIN_URL . '/assets/js/mai-config-generator.js', '', MAI_CONFIG_GENERATOR_VERSION, true );
 
 		$config   = [];
-		$options  = \mai_get_options();
-		$defaults = require \mai_get_dir() . 'config/_default.php';
+		$options  = mai_get_options();
+		$defaults = require mai_get_dir() . 'config/_default.php';
 		$keepers  = []; // Any top level settings that transfer dirctly from options to our config. I didn't see any but thought I would.
 
 		foreach ( $options as $key => $value ) {
 
 			// Fonts.
-			if ( \mai_has_string( '-typography', $key ) && $value ) {
+			if ( mai_has_string( '-typography', $key ) && $value ) {
 				if ( isset( $value['font-family'] ) && isset( $value['font-weight'] ) ) {
 					$config['global-styles']['fonts'][ str_replace( '-typography', '', $key ) ] = sprintf( '%s:%s', $value['font-family'], $value['font-weight'] );
 				}
 			}
 
 			// Colors.
-			if ( \mai_has_string( 'color-', $key ) && $value ) {
+			if ( mai_has_string( 'color-', $key ) && $value ) {
 				$config['global-styles']['colors'][ str_replace( 'color-', '', $key ) ] = $value;
 			}
 
@@ -235,7 +238,7 @@ final class Mai_Config_Generator {
 			}
 
 			// Page Header.
-			if ( \mai_has_string( 'page-header-', $key ) && $value ) {
+			if ( mai_has_string( 'page-header-', $key ) && $value ) {
 				$config['settings']['page-header'][ str_replace( 'page-header-', '', $key ) ] = $value;
 			}
 
