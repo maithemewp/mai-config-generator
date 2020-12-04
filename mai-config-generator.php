@@ -330,6 +330,10 @@ final class Mai_Config_Generator {
 			if ( mai_has_string( '-layout-divider', $key ) || mai_has_string( '-field-divider', $key ) ) {
 				unset( $array[ $key ] );
 			}
+			// Remove empty hr's. Not sure why they are getting saved to the db anyway.
+			if ( '' == $key && '<hr>' === $value ) {
+				unset( $array[ $key ] );
+			}
 			// Recursive array.
 			elseif ( is_array( $value ) ) {
 				if ( $this->has_string_keys( $value ) ) {
