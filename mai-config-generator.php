@@ -117,7 +117,6 @@ final class Mai_Config_Generator {
 		if ( ! defined( 'MAI_CONFIG_GENERATOR_BASENAME' ) ) {
 			define( 'MAI_CONFIG_GENERATOR_BASENAME', dirname( plugin_basename( __FILE__ ) ) );
 		}
-
 	}
 
 	/**
@@ -169,6 +168,11 @@ final class Mai_Config_Generator {
 
 		// Setup the updater.
 		$updater = Puc_v4_Factory::buildUpdateChecker( 'https://github.com/maithemewp/mai-config-generator/', __FILE__, 'mai-config-generator' );
+
+		// Maybe set github api token.
+		if ( defined( 'MAI_GITHUB_API_TOKEN' ) ) {
+			$updater->setAuthentication( MAI_GITHUB_API_TOKEN );
+		}
 	}
 
 	/**
