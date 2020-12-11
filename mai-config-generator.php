@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name:     Mai Config Generator
- * Plugin URI:      https://bizbudding.com/mai-theme/
- * Description:     Generate config.php content for Mai Theme v2.
+ * Plugin URI:      https://bizbudding.com/products/mai-config-generator/
+ * Description:     Generate config.php content for setting defaults in a custom Mai Theme (v2 only).
  * Version:         1.0.0
  *
- * Author:          BizBudding, Mike Hemberger
+ * Author:          BizBudding
  * Author URI:      https://bizbudding.com
  */
 
