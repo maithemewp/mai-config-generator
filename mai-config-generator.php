@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Config Generator
  * Plugin URI:      https://bizbudding.com/mai-theme/
  * Description:     Generate config.php content for Mai Theme v2.
- * Version:         0.1.0
+ * Version:         1.0.0
  *
  * Author:          BizBudding, Mike Hemberger
  * Author URI:      https://bizbudding.com
@@ -90,7 +90,7 @@ final class Mai_Config_Generator {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_CONFIG_GENERATOR_VERSION' ) ) {
-			define( 'MAI_CONFIG_GENERATOR_VERSION', '0.1.0' );
+			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.0.0' );
 		}
 
 		// Plugin Folder Path.
