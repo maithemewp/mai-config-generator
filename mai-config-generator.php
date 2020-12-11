@@ -151,7 +151,7 @@ final class Mai_Config_Generator {
 	 *
 	 * composer require yahnis-elsts/plugin-update-checker
 	 *
-	 * @uses    https://github.com/YahnisElsts/plugin-update-checker/
+	 * @uses https://github.com/YahnisElsts/plugin-update-checker/
 	 *
 	 * @return  void
 	 */
