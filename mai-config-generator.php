@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Config Generator
  * Plugin URI:      https://bizbudding.com/products/mai-config-generator/
  * Description:     Generate config.php content for setting defaults in a custom Mai Theme (v2 only).
- * Version:         1.0.0
+ * Version:         1.0.1
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -90,7 +90,7 @@ final class Mai_Config_Generator {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_CONFIG_GENERATOR_VERSION' ) ) {
-			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.0.0' );
+			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.0.1' );
 		}
 
 		// Plugin Folder Path.
@@ -142,7 +142,7 @@ final class Mai_Config_Generator {
 	public function hooks() {
 
 		add_action( 'admin_init', [ $this, 'updater' ] );
-		add_action( 'admin_menu', [ $this, 'admin_menu_page' ] );
+		add_action( 'admin_menu', [ $this, 'admin_menu_page' ], 12 );
 	}
 
 	/**
@@ -185,7 +185,7 @@ final class Mai_Config_Generator {
 	 *
 	 * @return void
 	 */
-	function admin_menu_page() {
+	public function admin_menu_page() {
 		add_submenu_page(
 			'mai-theme',
 			esc_html__( 'Config Generator', 'mai-config-generator' ),
@@ -199,8 +199,8 @@ final class Mai_Config_Generator {
 
 	/**
 	 * Config generator.
-	*/
-	function get_config() {
+	 */
+	public function get_config() {
 		if ( ! function_exists( 'mai_get_config' ) ) {
 			return;
 		}
@@ -307,7 +307,7 @@ final class Mai_Config_Generator {
 	}
 
 
-	function get_array_html( $array, $indent = '' ) {
+	public function get_array_html( $array, $indent = '' ) {
 		$html = '';
 		foreach ( $array as $key => $values ) {
 			if ( is_array( $values ) ) {
@@ -328,7 +328,7 @@ final class Mai_Config_Generator {
 		return $html;
 	}
 
-	function config_cleanup( $array, $defaults ) {
+	public function config_cleanup( $array, $defaults ) {
 		foreach ( $array as $key => $value ) {
 			// Remove layout dividers. Not sure why they are getting saved to the db anyway.
 			if ( mai_has_string( '-layout-divider', $key ) || mai_has_string( '-field-divider', $key ) ) {
@@ -341,7 +341,7 @@ final class Mai_Config_Generator {
 			// Recursive array.
 			elseif ( is_array( $value ) ) {
 				if ( $this->has_string_keys( $value ) ) {
-					$array[ $key ] = $this->config_cleanup( $value, $defaults[ $key ] );
+					$array[ $key ]    = $this->config_cleanup( $value, isset( $defaults[ $key ] ) ? $defaults[ $key ] : [] );
 					if ( empty( $array[ $key ] ) ) {
 						unset( $array[ $key ] );
 					}
@@ -358,7 +358,7 @@ final class Mai_Config_Generator {
 		return $array;
 	}
 
-	function get_config_header() {
+	public function get_config_header() {
 		return '<?php
 /**
  * Mai Engine.
@@ -372,11 +372,11 @@ final class Mai_Config_Generator {
 ';
 	}
 
-	function get_tab() {
+	public function get_tab() {
 		return '	';
 	}
 
-	function has_string_keys( $array ) {
+	public function has_string_keys( $array ) {
 		return count( array_filter( array_keys( $array ), 'is_string' ) ) > 0;
 	}
 }
