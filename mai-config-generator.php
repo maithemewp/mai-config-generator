@@ -238,17 +238,17 @@ final class Mai_Config_Generator {
 
 			// Sticky Header.
 			if ( ( 'site-header-sticky' === $key ) && $value ) {
-				$config['theme-support']['add'] = 'sticky-header';
+				$config['theme-support']['add'][] = 'sticky-header';
 			}
 
 			// Transparent Header.
 			if ( ( 'site-header-transparent' === $key ) && $value ) {
-				$config['theme-support']['add'] = 'transparent-header';
+				$config['theme-support']['add'][] = 'transparent-header';
 			}
 
 			// Boxed Container, only if true.
 			if ( ( 'boxed-container' === $key ) && $value ) {
-				$config['theme-support']['add'] = $value;
+				$config['theme-support']['add'][] = $value;
 			}
 
 			// Page Header.
@@ -279,6 +279,15 @@ final class Mai_Config_Generator {
 			// Site Layouts.
 			if ( ( 'site-layouts' === $key ) && $value ) {
 				$config['settings'][ $key ] = $value;
+			}
+
+			// Site Header.
+			if ( ( 'site-header-mobile' === $key ) && $value ) {
+				$config['site-header-mobile'] = $value;
+			}
+
+			if ( ( 'site-header-mobile-content' === $key ) && $value ) {
+				$config['site-header-mobile-content'] = $value;
 			}
 
 			// After Header Menu Alignment.
