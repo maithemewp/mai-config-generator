@@ -283,14 +283,27 @@ final class Mai_Config_Generator {
 
 			// Site Header.
 			if ( ( 'site-header-mobile' === $key ) && $value ) {
-				$config['site-header-mobile'] = $value;
+				$config[ $key ] = $value;
 			}
 
 			if ( ( 'site-header-mobile-content' === $key ) && $value ) {
-				$config['site-header-mobile-content'] = $value;
+				$config[ $key ] = $value;
 			}
 
-			// After Header Menu Alignment.
+			// Menu Breakpoint.
+			if ( ( 'mobile-menu-breakpoint' === $key ) && $value ) {
+				$config['settings'][ $key ] = $value;
+			}
+
+			// Menu Alignment.
+			if ( ( 'header-left-menu-alignment' === $key ) && $value ) {
+				$config['settings'][ $key ] = $value;
+			}
+
+			if ( ( 'header-right-menu-alignment' === $key ) && $value ) {
+				$config['settings'][ $key ] = $value;
+			}
+
 			if ( ( 'after-header-menu-alignment' === $key ) && $value ) {
 				$config['settings'][ $key ] = $value;
 			}
