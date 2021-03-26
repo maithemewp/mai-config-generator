@@ -1,6 +1,11 @@
 # Changelog
 
-## 1.0.2 (1/13/21)
+## 1.1.0 (3/25/21)
+* Added: Support for Mobile Header settings.
+* Added: Header menu alignment settings.
+* Fixed: Error when using theme-support for sticky or transparent header.
+
+## 1.0.2 (2/13/21)
 * Added: Mai logo icon to updater.
 
 ## 1.0.0

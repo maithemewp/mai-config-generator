@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Config Generator
  * Plugin URI:      https://bizbudding.com/products/mai-config-generator/
  * Description:     Generate config.php content for setting defaults in a custom Mai Theme (v2 only).
- * Version:         1.0.2
+ * Version:         1.1.0
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -90,7 +90,7 @@ final class Mai_Config_Generator {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_CONFIG_GENERATOR_VERSION' ) ) {
-			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.0.2' );
+			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.1.0' );
 		}
 
 		// Plugin Folder Path.
@@ -238,17 +238,17 @@ final class Mai_Config_Generator {
 
 			// Sticky Header.
 			if ( ( 'site-header-sticky' === $key ) && $value ) {
-				$config['theme-support']['add'] = 'sticky-header';
+				$config['theme-support']['add'][] = 'sticky-header';
 			}
 
 			// Transparent Header.
 			if ( ( 'site-header-transparent' === $key ) && $value ) {
-				$config['theme-support']['add'] = 'transparent-header';
+				$config['theme-support']['add'][] = 'transparent-header';
 			}
 
 			// Boxed Container, only if true.
 			if ( ( 'boxed-container' === $key ) && $value ) {
-				$config['theme-support']['add'] = $value;
+				$config['theme-support']['add'][] = $value;
 			}
 
 			// Page Header.
@@ -281,7 +281,29 @@ final class Mai_Config_Generator {
 				$config['settings'][ $key ] = $value;
 			}
 
-			// After Header Menu Alignment.
+			// Site Header.
+			if ( ( 'site-header-mobile' === $key ) && $value ) {
+				$config[ $key ] = $value;
+			}
+
+			if ( ( 'site-header-mobile-content' === $key ) && $value ) {
+				$config[ $key ] = $value;
+			}
+
+			// Menu Breakpoint.
+			if ( ( 'mobile-menu-breakpoint' === $key ) && $value ) {
+				$config['settings'][ $key ] = $value;
+			}
+
+			// Menu Alignment.
+			if ( ( 'header-left-menu-alignment' === $key ) && $value ) {
+				$config['settings'][ $key ] = $value;
+			}
+
+			if ( ( 'header-right-menu-alignment' === $key ) && $value ) {
+				$config['settings'][ $key ] = $value;
+			}
+
 			if ( ( 'after-header-menu-alignment' === $key ) && $value ) {
 				$config['settings'][ $key ] = $value;
 			}
