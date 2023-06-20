@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Config Generator
  * Plugin URI:      https://bizbudding.com/products/mai-config-generator/
  * Description:     Generate config.php content for setting defaults in a custom Mai Theme (v2 only).
- * Version:         1.1.0
+ * Version:         1.2.0
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -12,6 +12,9 @@
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+// Must be at the top of the file.
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 /**
  * Main Mai_Config_Generator Class.
@@ -87,10 +90,9 @@ final class Mai_Config_Generator {
 	 * @return  void
 	 */
 	private function setup_constants() {
-
 		// Plugin version.
 		if ( ! defined( 'MAI_CONFIG_GENERATOR_VERSION' ) ) {
-			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.1.0' );
+			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.2.0' );
 		}
 
 		// Plugin Folder Path.
@@ -140,9 +142,8 @@ final class Mai_Config_Generator {
 	 * @return  void
 	 */
 	public function hooks() {
-
-		add_action( 'admin_init', [ $this, 'updater' ] );
-		add_action( 'admin_menu', [ $this, 'admin_menu_page' ], 12 );
+		add_action( 'plugins_loaded', [ $this, 'updater' ], 12 );
+		add_action( 'admin_menu',     [ $this, 'admin_menu_page' ], 12 );
 	}
 
 	/**
@@ -155,19 +156,13 @@ final class Mai_Config_Generator {
 	 * @return  void
 	 */
 	public function updater() {
-
-		// Bail if current user cannot manage plugins.
-		if ( ! current_user_can( 'install_plugins' ) ) {
-			return;
-		}
-
 		// Bail if plugin updater is not loaded.
-		if ( ! class_exists( 'Puc_v4_Factory' ) ) {
+		if ( ! class_exists( 'YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
 			return;
 		}
 
 		// Setup the updater.
-		$updater = Puc_v4_Factory::buildUpdateChecker( 'https://github.com/maithemewp/mai-config-generator/', __FILE__, 'mai-config-generator' );
+		$updater = PucFactory::buildUpdateChecker( 'https://github.com/maithemewp/mai-config-generator/', __FILE__, 'mai-config-generator' );
 
 		// Maybe set github api token.
 		if ( defined( 'MAI_GITHUB_API_TOKEN' ) ) {
@@ -223,7 +218,6 @@ final class Mai_Config_Generator {
 		$keepers  = []; // Any top level settings that transfer dirctly from options to our config. I didn't see any but thought I would.
 
 		foreach ( $options as $key => $value ) {
-
 			// Fonts.
 			if ( mai_has_string( '-typography', $key ) && $value ) {
 				if ( isset( $value['font-family'] ) && isset( $value['font-weight'] ) ) {

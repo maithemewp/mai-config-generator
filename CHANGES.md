@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.0 (6/20/23)
+* Changed: Updated updater.
+
 ## 1.1.0 (3/25/21)
 * Added: Support for Mobile Header settings.
 * Added: Header menu alignment settings.
