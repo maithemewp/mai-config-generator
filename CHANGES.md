@@ -12,4 +12,4 @@
 * Added: Mai logo icon to updater.
 
 ## 1.0.0
-Initial Release
+Initial release.
