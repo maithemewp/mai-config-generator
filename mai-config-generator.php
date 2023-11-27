@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Config Generator
  * Plugin URI:      https://bizbudding.com/products/mai-config-generator/
  * Description:     Generate config.php content for setting defaults in a custom Mai Theme (v2 only).
- * Version:         1.2.0
+ * Version:         1.2.1
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -92,7 +92,7 @@ final class Mai_Config_Generator {
 	private function setup_constants() {
 		// Plugin version.
 		if ( ! defined( 'MAI_CONFIG_GENERATOR_VERSION' ) ) {
-			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.2.0' );
+			define( 'MAI_CONFIG_GENERATOR_VERSION', '1.2.1' );
 		}
 
 		// Plugin Folder Path.

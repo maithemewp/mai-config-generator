@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.1 (11/27/23)
+* Changed: Updated updater.
+
 ## 1.2.0 (6/20/23)
 * Changed: Updated updater.
 
