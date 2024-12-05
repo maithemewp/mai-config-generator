@@ -1,10 +1,13 @@
 # Changelog
 
+## 1.2.2 (12/5/24)
+* Changed: Updated the updater.
+
 ## 1.2.1 (11/27/23)
-* Changed: Updated updater.
+* Changed: Updated the updater.
 
 ## 1.2.0 (6/20/23)
-* Changed: Updated updater.
+* Changed: Updated the updater.
 
 ## 1.1.0 (3/25/21)
 * Added: Support for Mobile Header settings.
